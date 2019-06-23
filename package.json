@@ -24,5 +24,9 @@
   "bugs": {
     "url": "https://github.com/bberak/voxel-toy/issues"
   },
-  "homepage": "https://github.com/bberak/voxel-toy"
+  "homepage": "https://github.com/bberak/voxel-toy",
+  "dependencies": {
+    "args": "^5.0.1",
+    "vox-reader": "^1.0.0"
+  }
 }
