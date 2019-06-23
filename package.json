@@ -1,0 +1,28 @@
+{
+  "name": "voxel-toy",
+  "version": "0.0.1",
+  "description": "Tool for converting .vox files to other useful formats",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bberak/voxel-toy.git"
+  },
+  "keywords": [
+    "Voxel",
+    ".vox",
+    "MagicaVoxel",
+    "3D",
+    "Games",
+    "Converter"
+  ],
+  "author": "bberak",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bberak/voxel-toy/issues"
+  },
+  "homepage": "https://github.com/bberak/voxel-toy"
+}
