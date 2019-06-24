@@ -2,14 +2,13 @@
   "name": "voxel-toy",
   "version": "0.0.1",
   "description": "Tool for converting .vox files to other useful formats",
-  "main": "index.js",
-  "scripts": {
-    "start": "node src/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "main": "src/index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/bberak/voxel-toy.git"
+  },
+  "bin": {
+    "vox": "src/index.js"
   },
   "keywords": [
     "Voxel",
@@ -28,5 +27,6 @@
   "dependencies": {
     "args": "^5.0.1",
     "vox-reader": "^1.0.0"
-  }
+  },
+  "devDependencies": {}
 }

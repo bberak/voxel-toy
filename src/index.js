@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const args = require("args");
 const { question, abolsutePath, changeExtension, readBuffer } = require("./utils");
 const assert = require("assert");
