@@ -42,11 +42,11 @@ npm install -g pkg
 Create a MacOS executable:
 
 ```
-pkg -t node8-macos-x64 src/index.js
+pkg -t node8-macos-x64 -o vox .
 ```
 
 Create a Windows executable:
 
 ```
-pkg -t node8-win-x64 src/index.js
+pkg -t node8-win-x64 -o vox .
 ```
