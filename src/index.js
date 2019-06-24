@@ -2,6 +2,7 @@ const args = require("args");
 const { question, abolsutePath, changeExtension, readBuffer } = require("./utils");
 const assert = require("assert");
 const parseVoxels = require("vox-reader");
+const { writeVoxels } = require("./t3d");
 
 async function main() {
 	args
@@ -16,16 +17,11 @@ async function main() {
 	assert(input, "input must be provided");
 
 	const voxFile = abolsutePath(input);
+	const voxBuffer = await readBuffer(voxFile);
+	const voxels = parseVoxels(voxBuffer);
 	const t3dFile = changeExtension(voxFile, ".t3d");
 
-	console.log({
-		voxFile,
-		t3dFile,
-		scale
-	})
-
-	const voxBuffer = readBuffer(voxFile);
-	const voxels = parseVoxels(voxBuffer);
+	await writeVoxels(t3dFile, voxels);
 }
 
 main().catch(console.error);

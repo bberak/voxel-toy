@@ -35,8 +35,19 @@ const readBuffer = file => {
 	});
 };
 
+const writeString = (file, str) => {
+	return new Promise((resolve, reject) => {
+		fs.writeFile(file, str, err => {
+			if (err) reject(err);
+			else resolve();
+		});
+	});
+};
+
 module.exports = {
 	question,
 	abolsutePath,
-	changeExtension
+	changeExtension,
+	readBuffer,
+	writeString
 };
