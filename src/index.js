@@ -7,7 +7,7 @@ const { writeVoxels } = require("./t3d");
 async function main() {
 	args
 		.option("input", "The path to the input .vox file")
-		.option("scale", "The scale of each individual voxel when converted to a UE4 box geometry (default 100)")
+		.option("scale", "The scale of each individual voxel when converted to a UE4 box geometry");
 
 	const flags = args.parse(process.argv);
 
