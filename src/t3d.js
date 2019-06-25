@@ -12,14 +12,14 @@ const box = ({ x, y, z, scale, name}) => {
          Begin Object Class=BrushComponent Name="BrushComponent0" Archetype=BrushComponent'Default__Brush:BrushComponent0'
          End Object
          Begin Object Name="CubeBuilder_1"
-            Vertices(0)=(X=-${scale}.000000,Y=-${scale}.000000,Z=-${scale}.000000)
-            Vertices(1)=(X=-${scale}.000000,Y=-${scale}.000000,Z=${scale}.000000)
-            Vertices(2)=(X=-${scale}.000000,Y=${scale}.000000,Z=-${scale}.000000)
-            Vertices(3)=(X=-${scale}.000000,Y=${scale}.000000,Z=${scale}.000000)
-            Vertices(4)=(X=${scale}.000000,Y=-${scale}.000000,Z=-${scale}.000000)
-            Vertices(5)=(X=${scale}.000000,Y=-${scale}.000000,Z=${scale}.000000)
-            Vertices(6)=(X=${scale}.000000,Y=${scale}.000000,Z=-${scale}.000000)
-            Vertices(7)=(X=${scale}.000000,Y=${scale}.000000,Z=${scale}.000000)
+            Vertices(0)=(X=-${scale},Y=-${scale},Z=-${scale})
+            Vertices(1)=(X=-${scale},Y=-${scale},Z=${scale})
+            Vertices(2)=(X=-${scale},Y=${scale},Z=-${scale})
+            Vertices(3)=(X=-${scale},Y=${scale},Z=${scale})
+            Vertices(4)=(X=${scale},Y=-${scale},Z=-${scale})
+            Vertices(5)=(X=${scale},Y=-${scale},Z=${scale})
+            Vertices(6)=(X=${scale},Y=${scale},Z=-${scale})
+            Vertices(7)=(X=${scale},Y=${scale},Z=${scale})
             Polys(0)=(VertexIndices=(0,1,3,2),Direction=1)
             Polys(1)=(VertexIndices=(2,3,7,6),Direction=1)
             Polys(2)=(VertexIndices=(6,7,5,4),Direction=1)
@@ -32,71 +32,71 @@ const box = ({ x, y, z, scale, name}) => {
          End Object
          Begin Object Name="BrushComponent0"
             Brush=Model'Model_0'
-            RelativeLocation=(X=-${x}.000000,Y=${y}.000000,Z=${z}.000000)
+            RelativeLocation=(X=-${x},Y=${y},Z=${z})
          End Object
          BrushType=Brush_Add
          bNotForClientOrServer=True
          Begin Brush Name=Model_0
             Begin PolyList
                Begin Polygon
-                  Origin   -00${scale}.000000,-00${scale}.000000,-00${scale}.000000
-                  Normal   -00001.000000,+00000.000000,+00000.000000
-                  TextureU +00000.000000,+00001.000000,+00000.000000
-                  TextureV +00000.000000,+00000.000000,-00001.000000
-                  Vertex   -00${scale}.000000,-00${scale}.000000,-00${scale}.000000
-                  Vertex   -00${scale}.000000,-00${scale}.000000,+00${scale}.000000
-                  Vertex   -00${scale}.000000,+00${scale}.000000,+00${scale}.000000
-                  Vertex   -00${scale}.000000,+00${scale}.000000,-00${scale}.000000
+                  Origin   -${scale},-${scale},-${scale}
+                  Normal   -1,+0,+0
+                  TextureU +0,+1,+0
+                  TextureV +0,+0,-1
+                  Vertex   -${scale},-${scale},-${scale}
+                  Vertex   -${scale},-${scale},+${scale}
+                  Vertex   -${scale},+${scale},+${scale}
+                  Vertex   -${scale},+${scale},-${scale}
                End Polygon
                Begin Polygon
-                  Origin   -00${scale}.000000,+00${scale}.000000,-00${scale}.000000
-                  Normal   +00000.000000,+00001.000000,+00000.000000
-                  TextureU +00001.000000,-00000.000000,+00000.000000
-                  TextureV +00000.000000,+00000.000000,-00001.000000
-                  Vertex   -00${scale}.000000,+00${scale}.000000,-00${scale}.000000
-                  Vertex   -00${scale}.000000,+00${scale}.000000,+00${scale}.000000
-                  Vertex   +00${scale}.000000,+00${scale}.000000,+00${scale}.000000
-                  Vertex   +00${scale}.000000,+00${scale}.000000,-00${scale}.000000
+                  Origin   -${scale},+${scale},-${scale}
+                  Normal   +0,+1,+0
+                  TextureU +1,-0,+0
+                  TextureV +0,+0,-1
+                  Vertex   -${scale},+${scale},-${scale}
+                  Vertex   -${scale},+${scale},+${scale}
+                  Vertex   +${scale},+${scale},+${scale}
+                  Vertex   +${scale},+${scale},-${scale}
                End Polygon
                Begin Polygon
-                  Origin   +00${scale}.000000,+00${scale}.000000,-00${scale}.000000
-                  Normal   +00001.000000,+00000.000000,+00000.000000
-                  TextureU +00000.000000,-00001.000000,+00000.000000
-                  TextureV +00000.000000,+00000.000000,-00001.000000
-                  Vertex   +00${scale}.000000,+00${scale}.000000,-00${scale}.000000
-                  Vertex   +00${scale}.000000,+00${scale}.000000,+00${scale}.000000
-                  Vertex   +00${scale}.000000,-00${scale}.000000,+00${scale}.000000
-                  Vertex   +00${scale}.000000,-00${scale}.000000,-00${scale}.000000
+                  Origin   +${scale},+${scale},-${scale}
+                  Normal   +1,+0,+0
+                  TextureU +0,-1,+0
+                  TextureV +0,+0,-1
+                  Vertex   +${scale},+${scale},-${scale}
+                  Vertex   +${scale},+${scale},+${scale}
+                  Vertex   +${scale},-${scale},+${scale}
+                  Vertex   +${scale},-${scale},-${scale}
                End Polygon
                Begin Polygon
-                  Origin   +00${scale}.000000,-00${scale}.000000,-00${scale}.000000
-                  Normal   +00000.000000,-00001.000000,+00000.000000
-                  TextureU -00001.000000,-00000.000000,-00000.000000
-                  TextureV +00000.000000,+00000.000000,-00001.000000
-                  Vertex   +00${scale}.000000,-00${scale}.000000,-00${scale}.000000
-                  Vertex   +00${scale}.000000,-00${scale}.000000,+00${scale}.000000
-                  Vertex   -00${scale}.000000,-00${scale}.000000,+00${scale}.000000
-                  Vertex   -00${scale}.000000,-00${scale}.000000,-00${scale}.000000
+                  Origin   +${scale},-${scale},-${scale}
+                  Normal   +0,-1,+0
+                  TextureU -1,-0,-0
+                  TextureV +0,+0,-1
+                  Vertex   +${scale},-${scale},-${scale}
+                  Vertex   +${scale},-${scale},+${scale}
+                  Vertex   -${scale},-${scale},+${scale}
+                  Vertex   -${scale},-${scale},-${scale}
                End Polygon
                Begin Polygon
-                  Origin   -00${scale}.000000,+00${scale}.000000,+00${scale}.000000
-                  Normal   +00000.000000,+00000.000000,+00001.000000
-                  TextureU +00001.000000,+00000.000000,+00000.000000
-                  TextureV +00000.000000,+00001.000000,+00000.000000
-                  Vertex   -00${scale}.000000,+00${scale}.000000,+00${scale}.000000
-                  Vertex   -00${scale}.000000,-00${scale}.000000,+00${scale}.000000
-                  Vertex   +00${scale}.000000,-00${scale}.000000,+00${scale}.000000
-                  Vertex   +00${scale}.000000,+00${scale}.000000,+00${scale}.000000
+                  Origin   -${scale},+${scale},+${scale}
+                  Normal   +0,+0,+1
+                  TextureU +1,+0,+0
+                  TextureV +0,+1,+0
+                  Vertex   -${scale},+${scale},+${scale}
+                  Vertex   -${scale},-${scale},+${scale}
+                  Vertex   +${scale},-${scale},+${scale}
+                  Vertex   +${scale},+${scale},+${scale}
                End Polygon
                Begin Polygon
-                  Origin   -00${scale}.000000,-00${scale}.000000,-00${scale}.000000
-                  Normal   +00000.000000,+00000.000000,-00001.000000
-                  TextureU +00001.000000,+00000.000000,+00000.000000
-                  TextureV +00000.000000,-00001.000000,+00000.000000
-                  Vertex   -00${scale}.000000,-00${scale}.000000,-00${scale}.000000
-                  Vertex   -00${scale}.000000,+00${scale}.000000,-00${scale}.000000
-                  Vertex   +00${scale}.000000,+00${scale}.000000,-00${scale}.000000
-                  Vertex   +00${scale}.000000,-00${scale}.000000,-00${scale}.000000
+                  Origin   -${scale},-${scale},-${scale}
+                  Normal   +0,+0,-1
+                  TextureU +1,+0,+0
+                  TextureV +0,-1,+0
+                  Vertex   -${scale},-${scale},-${scale}
+                  Vertex   -${scale},+${scale},-${scale}
+                  Vertex   +${scale},+${scale},-${scale}
+                  Vertex   +${scale},-${scale},-${scale}
                End Polygon
             End PolyList
          End Brush
@@ -105,7 +105,7 @@ const box = ({ x, y, z, scale, name}) => {
          BrushBuilder=CubeBuilder'CubeBuilder_1'
          SpawnCollisionHandlingMethod=AlwaysSpawn
          RootComponent=BrushComponent0
-         ActorLabel="Box Brush99"
+         ActorLabel="${name}"
       End Actor
       `;
 };
@@ -125,7 +125,7 @@ const convertToT3D = (voxels, scale = 100) => {
 const writeVoxels = (file, voxels) => {
    const data = convertToT3D(voxels);
 
-   return writeString(file, data);
+   return writeText(file, data);
 };
 
 module.exports = {
