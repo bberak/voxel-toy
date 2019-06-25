@@ -1,8 +1,6 @@
-const { writeText } = require("./utils");
-
-const box = ({ x, y, z, scale, name}) => {
+const box = ({ x, y, z, scale, name }) => {
    return `
-   Begin Actor Class=Brush Name=${name} Archetype=Brush'/Script/Engine.Default__Brush'
+      Begin Actor Class=Brush Name=${name} Archetype=Brush'/Script/Engine.Default__Brush'
          Begin Object Class=CubeBuilder Name="CubeBuilder_1"
          End Object
          Begin Object Class=Polys Name="Polys_0"
@@ -107,28 +105,30 @@ const box = ({ x, y, z, scale, name}) => {
          RootComponent=BrushComponent0
          ActorLabel="${name}"
       End Actor
-      `;
+   `;
 };
 
 const convertToT3D = (voxels, scale = 100) => {
-   const sizes = voxels.children.find(x => x.id == "SIZE");
-   const locations = voxels.children.find(x => x.id == "XYZI");
-   const colors = voxels.children.find(x => x.id == "RGBA");
+   const positions = voxels.children.find(x => x.id == "XYZI");
+   const boxes = positions.data.values.map(({ x, y, z }, idx) =>
+      box({
+         x: x * scale,
+         y: y * scale,
+         z: z * scale,
+         name: `Box${idx}`,
+         scale
+      })
+   );
 
-   console.log(sizes);
-   console.log(locations.data.values[2]);
-   console.log(colors.data.values[2]);
-
-   return "OOOOPS - NOT DONE";
-};
-
-const writeVoxels = (file, voxels) => {
-   const data = convertToT3D(voxels);
-
-   return writeText(file, data);
+   return `
+      Begin Map
+      Begin Level
+         ${boxes.join("\n")}
+      End Level
+      End Map
+   `;
 };
 
 module.exports = {
-   convertToT3D,
-   writeVoxels
+   convertToT3D
 };

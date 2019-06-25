@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 
 const args = require("args");
-const { question, abolsutePath, changeExtension, readBuffer } = require("./utils");
+const { question, abolsutePath, changeExtension, readBuffer, writeText } = require("./utils");
 const assert = require("assert");
 const parseVoxels = require("vox-reader");
-const { writeVoxels } = require("./t3d");
+const { convertToT3D } = require("./t3d");
 
 async function main() {
 	args
@@ -21,9 +21,10 @@ async function main() {
 	const voxFile = abolsutePath(input);
 	const voxBuffer = await readBuffer(voxFile);
 	const voxels = parseVoxels(voxBuffer);
+	const t3dText = convertToT3D(voxels, scale);
 	const t3dFile = changeExtension(voxFile, ".t3d");
 
-	await writeVoxels(t3dFile, voxels);
+	await writeText(t3dFile, t3dText);
 }
 
 main().catch(console.error);
