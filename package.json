@@ -1,6 +1,6 @@
 {
   "name": "voxel-toy",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Tool for converting .vox files to other useful formats",
   "main": "src/index.js",
   "repository": {
