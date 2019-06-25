@@ -37,64 +37,64 @@ const box = ({ x, y, z, scale, name }) => {
          Begin Brush Name=M0
             Begin PolyList
                Begin Polygon
-                  Origin   -${scale},-${scale},-${scale}
-                  Normal   -1,+0,+0
+                  Origin -${scale},-${scale},-${scale}
+                  Normal -1,+0,+0
                   TextureU +0,+1,+0
                   TextureV +0,+0,-1
-                  Vertex   -${scale},-${scale},-${scale}
-                  Vertex   -${scale},-${scale},+${scale}
-                  Vertex   -${scale},+${scale},+${scale}
-                  Vertex   -${scale},+${scale},-${scale}
+                  Vertex -${scale},-${scale},-${scale}
+                  Vertex -${scale},-${scale},+${scale}
+                  Vertex -${scale},+${scale},+${scale}
+                  Vertex -${scale},+${scale},-${scale}
                End Polygon
                Begin Polygon
-                  Origin   -${scale},+${scale},-${scale}
-                  Normal   +0,+1,+0
+                  Origin -${scale},+${scale},-${scale}
+                  Normal +0,+1,+0
                   TextureU +1,-0,+0
                   TextureV +0,+0,-1
-                  Vertex   -${scale},+${scale},-${scale}
-                  Vertex   -${scale},+${scale},+${scale}
-                  Vertex   +${scale},+${scale},+${scale}
-                  Vertex   +${scale},+${scale},-${scale}
+                  Vertex -${scale},+${scale},-${scale}
+                  Vertex -${scale},+${scale},+${scale}
+                  Vertex +${scale},+${scale},+${scale}
+                  Vertex +${scale},+${scale},-${scale}
                End Polygon
                Begin Polygon
-                  Origin   +${scale},+${scale},-${scale}
-                  Normal   +1,+0,+0
+                  Origin +${scale},+${scale},-${scale}
+                  Normal +1,+0,+0
                   TextureU +0,-1,+0
                   TextureV +0,+0,-1
-                  Vertex   +${scale},+${scale},-${scale}
-                  Vertex   +${scale},+${scale},+${scale}
-                  Vertex   +${scale},-${scale},+${scale}
-                  Vertex   +${scale},-${scale},-${scale}
+                  Vertex +${scale},+${scale},-${scale}
+                  Vertex +${scale},+${scale},+${scale}
+                  Vertex +${scale},-${scale},+${scale}
+                  Vertex +${scale},-${scale},-${scale}
                End Polygon
                Begin Polygon
-                  Origin   +${scale},-${scale},-${scale}
-                  Normal   +0,-1,+0
+                  Origin +${scale},-${scale},-${scale}
+                  Normal +0,-1,+0
                   TextureU -1,-0,-0
                   TextureV +0,+0,-1
-                  Vertex   +${scale},-${scale},-${scale}
-                  Vertex   +${scale},-${scale},+${scale}
-                  Vertex   -${scale},-${scale},+${scale}
-                  Vertex   -${scale},-${scale},-${scale}
+                  Vertex +${scale},-${scale},-${scale}
+                  Vertex +${scale},-${scale},+${scale}
+                  Vertex -${scale},-${scale},+${scale}
+                  Vertex -${scale},-${scale},-${scale}
                End Polygon
                Begin Polygon
-                  Origin   -${scale},+${scale},+${scale}
-                  Normal   +0,+0,+1
+                  Origin -${scale},+${scale},+${scale}
+                  Normal +0,+0,+1
                   TextureU +1,+0,+0
                   TextureV +0,+1,+0
-                  Vertex   -${scale},+${scale},+${scale}
-                  Vertex   -${scale},-${scale},+${scale}
-                  Vertex   +${scale},-${scale},+${scale}
-                  Vertex   +${scale},+${scale},+${scale}
+                  Vertex -${scale},+${scale},+${scale}
+                  Vertex -${scale},-${scale},+${scale}
+                  Vertex +${scale},-${scale},+${scale}
+                  Vertex +${scale},+${scale},+${scale}
                End Polygon
                Begin Polygon
-                  Origin   -${scale},-${scale},-${scale}
-                  Normal   +0,+0,-1
+                  Origin -${scale},-${scale},-${scale}
+                  Normal +0,+0,-1
                   TextureU +1,+0,+0
                   TextureV +0,-1,+0
-                  Vertex   -${scale},-${scale},-${scale}
-                  Vertex   -${scale},+${scale},-${scale}
-                  Vertex   +${scale},+${scale},-${scale}
-                  Vertex   +${scale},-${scale},-${scale}
+                  Vertex -${scale},-${scale},-${scale}
+                  Vertex -${scale},+${scale},-${scale}
+                  Vertex +${scale},+${scale},-${scale}
+                  Vertex +${scale},-${scale},-${scale}
                End Polygon
             End PolyList
          End Brush
