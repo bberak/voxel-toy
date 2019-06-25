@@ -35,7 +35,7 @@ const readBuffer = file => {
 	});
 };
 
-const writeString = (file, str) => {
+const writeText = (file, str) => {
 	return new Promise((resolve, reject) => {
 		fs.writeFile(file, str, err => {
 			if (err) reject(err);
@@ -49,5 +49,5 @@ module.exports = {
 	abolsutePath,
 	changeExtension,
 	readBuffer,
-	writeString
+	writeText
 };
