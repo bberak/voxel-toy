@@ -1,15 +1,15 @@
 const box = ({ x, y, z, scale, name }) => {
    return `
       Begin Actor Class=Brush Name=${name} Archetype=Brush'/Script/Engine.Default__Brush'
-         Begin Object Class=CubeBuilder Name="CubeBuilder_1"
+         Begin Object Class=CubeBuilder Name="CB0"
          End Object
-         Begin Object Class=Polys Name="Polys_0"
+         Begin Object Class=Polys Name="P0"
          End Object
-         Begin Brush Name=Model_0
+         Begin Brush Name=M0
          End Brush
-         Begin Object Class=BrushComponent Name="BrushComponent0" Archetype=BrushComponent'Default__Brush:BrushComponent0'
+         Begin Object Class=BrushComponent Name="BC0" Archetype=BrushComponent'Default__Brush:BC0'
          End Object
-         Begin Object Name="CubeBuilder_1"
+         Begin Object Name="CB0"
             Vertices(0)=(X=-${scale},Y=-${scale},Z=-${scale})
             Vertices(1)=(X=-${scale},Y=-${scale},Z=${scale})
             Vertices(2)=(X=-${scale},Y=${scale},Z=-${scale})
@@ -26,15 +26,15 @@ const box = ({ x, y, z, scale, name }) => {
             Polys(5)=(VertexIndices=(0,2,6,4),Direction=1)
             Layer="Cube"
          End Object
-         Begin Object Name="Polys_0"
+         Begin Object Name="P0"
          End Object
-         Begin Object Name="BrushComponent0"
-            Brush=Model'Model_0'
+         Begin Object Name="BC0"
+            Brush=Model'M0'
             RelativeLocation=(X=-${x},Y=${y},Z=${z})
          End Object
          BrushType=Brush_Add
          bNotForClientOrServer=True
-         Begin Brush Name=Model_0
+         Begin Brush Name=M0
             Begin PolyList
                Begin Polygon
                   Origin   -${scale},-${scale},-${scale}
@@ -98,11 +98,11 @@ const box = ({ x, y, z, scale, name }) => {
                End Polygon
             End PolyList
          End Brush
-         Brush=Model'Model_0'
-         BrushComponent=BrushComponent0
-         BrushBuilder=CubeBuilder'CubeBuilder_1'
+         Brush=Model'M0'
+         BrushComponent=BC0
+         BrushBuilder=CubeBuilder'CB0'
          SpawnCollisionHandlingMethod=AlwaysSpawn
-         RootComponent=BrushComponent0
+         RootComponent=BC0
          ActorLabel="${name}"
       End Actor
    `;
