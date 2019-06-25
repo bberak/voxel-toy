@@ -11,22 +11,24 @@ async function main() {
 	
 	args
 		.option("input", "The path to the input .vox file")
-		.option("scale", "The scale of each individual voxel when converted to a UE4 box geometry");
+		.option("size", "The size of each individual voxel in UE4 units");
 
 	const flags = args.parse(process.argv);
 
 	const input = flags.input || (await question("Where is the .vox file?"));
-	const scale = flags.scale || (await question("What is the scale of each individual voxel in UE4 units?")) || 100;
+	const size = flags.size || (await question("What is the size of each individual voxel in UE4 units?")) || 200;
 
 	assert(input, "input must be provided");
 
 	const voxFile = abolsutePath(input);
 	const voxBuffer = await readBuffer(voxFile);
 	const voxels = parseVoxels(voxBuffer);
-	const t3dText = convertToT3D(voxels, scale);
+	const t3dText = convertToT3D(voxels, size);
 	const t3dFile = changeExtension(voxFile, ".t3d");
 
 	await writeText(t3dFile, t3dText);
+
+	console.log(`T3D file written: ${t3dFile}`)
 }
 
 main().catch(console.error);
