@@ -1,6 +1,18 @@
 const readline = require("readline");
 const path = require("path");
 const fs = require("fs");
+const msg = `
+██╗   ██╗ ██████╗ ██╗  ██╗███████╗██╗  ████████╗ ██████╗ ██╗   ██╗
+██║   ██║██╔═══██╗╚██╗██╔╝██╔════╝██║  ╚══██╔══╝██╔═══██╗╚██╗ ██╔╝
+██║   ██║██║   ██║ ╚███╔╝ █████╗  ██║     ██║   ██║   ██║ ╚████╔╝ 
+╚██╗ ██╔╝██║   ██║ ██╔██╗ ██╔══╝  ██║     ██║   ██║   ██║  ╚██╔╝  
+ ╚████╔╝ ╚██████╔╝██╔╝ ██╗███████╗███████╗██║   ╚██████╔╝   ██║   
+  ╚═══╝   ╚═════╝ ╚═╝  ╚═╝╚══════╝╚══════╝╚═╝    ╚═════╝    ╚═╝   
+`;
+
+const splash = () => {
+	console.log(msg);
+};
 
 const question = str => {
 	const rl = readline.createInterface({
@@ -45,6 +57,7 @@ const writeText = (file, str) => {
 };
 
 module.exports = {
+	splash,
 	question,
 	abolsutePath,
 	changeExtension,

@@ -1,12 +1,14 @@
 #!/usr/bin/env node
 
 const args = require("args");
-const { question, abolsutePath, changeExtension, readBuffer, writeText } = require("./utils");
+const { splash, question, abolsutePath, changeExtension, readBuffer, writeText } = require("./utils");
 const assert = require("assert");
 const parseVoxels = require("vox-reader");
 const { convertToT3D } = require("./t3d");
 
-async function main() {
+async function main() {	
+	splash();
+	
 	args
 		.option("input", "The path to the input .vox file")
 		.option("scale", "The scale of each individual voxel when converted to a UE4 box geometry");
