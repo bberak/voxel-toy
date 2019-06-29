@@ -1,6 +1,6 @@
 const _ = require("lodash");
 
-const box = ({ x, y, z, offsets, name }) => {
+const box = ({ x, y, z, offsetX, offsetY, offsetZ, name }) => {
    return `
       Begin Actor Class=Brush Name=${name} Archetype=Brush'/Script/Engine.Default__Brush'
          Begin Object Class=CubeBuilder Name="CubeBuilder_0"
@@ -12,14 +12,14 @@ const box = ({ x, y, z, offsets, name }) => {
          Begin Object Class=BrushComponent Name="BrushComponent0" Archetype=BrushComponent'Default__Brush:BrushComponent0'
          End Object
          Begin Object Name="CubeBuilder_0"
-            Vertices(0)=(X=-${offsets[0]},Y=-${offsets[1]},Z=-${offsets[2]})
-            Vertices(1)=(X=-${offsets[0]},Y=-${offsets[1]},Z=${offsets[2]})
-            Vertices(2)=(X=-${offsets[0]},Y=${offsets[1]},Z=-${offsets[2]})
-            Vertices(3)=(X=-${offsets[0]},Y=${offsets[1]},Z=${offsets[2]})
-            Vertices(4)=(X=${offsets[0]},Y=-${offsets[1]},Z=-${offsets[2]})
-            Vertices(5)=(X=${offsets[0]},Y=-${offsets[1]},Z=${offsets[2]})
-            Vertices(6)=(X=${offsets[0]},Y=${offsets[1]},Z=-${offsets[2]})
-            Vertices(7)=(X=${offsets[0]},Y=${offsets[1]},Z=${offsets[2]})
+            Vertices(0)=(X=-${offsetX},Y=-${offsetY},Z=-${offsetZ})
+            Vertices(1)=(X=-${offsetX},Y=-${offsetY},Z=${offsetZ})
+            Vertices(2)=(X=-${offsetX},Y=${offsetY},Z=-${offsetZ})
+            Vertices(3)=(X=-${offsetX},Y=${offsetY},Z=${offsetZ})
+            Vertices(4)=(X=${offsetX},Y=-${offsetY},Z=-${offsetZ})
+            Vertices(5)=(X=${offsetX},Y=-${offsetY},Z=${offsetZ})
+            Vertices(6)=(X=${offsetX},Y=${offsetY},Z=-${offsetZ})
+            Vertices(7)=(X=${offsetX},Y=${offsetY},Z=${offsetZ})
             Polys(0)=(VertexIndices=(0,1,3,2),Direction=1)
             Polys(1)=(VertexIndices=(2,3,7,6),Direction=1)
             Polys(2)=(VertexIndices=(6,7,5,4),Direction=1)
@@ -39,64 +39,64 @@ const box = ({ x, y, z, offsets, name }) => {
          Begin Brush Name=Model_0
             Begin PolyList
                Begin Polygon
-                  Origin -${offsets[0]},-${offsets[1]},-${offsets[2]}
+                  Origin -${offsetX},-${offsetY},-${offsetZ}
                   Normal -1,+0,+0
                   TextureU +0,+1,+0
                   TextureV +0,+0,-1
-                  Vertex -${offsets[0]},-${offsets[1]},-${offsets[2]}
-                  Vertex -${offsets[0]},-${offsets[1]},+${offsets[2]}
-                  Vertex -${offsets[0]},+${offsets[1]},+${offsets[2]}
-                  Vertex -${offsets[0]},+${offsets[1]},-${offsets[2]}
+                  Vertex -${offsetX},-${offsetY},-${offsetZ}
+                  Vertex -${offsetX},-${offsetY},+${offsetZ}
+                  Vertex -${offsetX},+${offsetY},+${offsetZ}
+                  Vertex -${offsetX},+${offsetY},-${offsetZ}
                End Polygon
                Begin Polygon
-                  Origin -${offsets[0]},+${offsets[1]},-${offsets[2]}
+                  Origin -${offsetX},+${offsetY},-${offsetZ}
                   Normal +0,+1,+0
                   TextureU +1,-0,+0
                   TextureV +0,+0,-1
-                  Vertex -${offsets[0]},+${offsets[1]},-${offsets[2]}
-                  Vertex -${offsets[0]},+${offsets[1]},+${offsets[2]}
-                  Vertex +${offsets[0]},+${offsets[1]},+${offsets[2]}
-                  Vertex +${offsets[0]},+${offsets[1]},-${offsets[2]}
+                  Vertex -${offsetX},+${offsetY},-${offsetZ}
+                  Vertex -${offsetX},+${offsetY},+${offsetZ}
+                  Vertex +${offsetX},+${offsetY},+${offsetZ}
+                  Vertex +${offsetX},+${offsetY},-${offsetZ}
                End Polygon
                Begin Polygon
-                  Origin +${offsets[0]},+${offsets[1]},-${offsets[2]}
+                  Origin +${offsetX},+${offsetY},-${offsetZ}
                   Normal +1,+0,+0
                   TextureU +0,-1,+0
                   TextureV +0,+0,-1
-                  Vertex +${offsets[0]},+${offsets[1]},-${offsets[2]}
-                  Vertex +${offsets[0]},+${offsets[1]},+${offsets[2]}
-                  Vertex +${offsets[0]},-${offsets[1]},+${offsets[2]}
-                  Vertex +${offsets[0]},-${offsets[1]},-${offsets[2]}
+                  Vertex +${offsetX},+${offsetY},-${offsetZ}
+                  Vertex +${offsetX},+${offsetY},+${offsetZ}
+                  Vertex +${offsetX},-${offsetY},+${offsetZ}
+                  Vertex +${offsetX},-${offsetY},-${offsetZ}
                End Polygon
                Begin Polygon
-                  Origin +${offsets[0]},-${offsets[1]},-${offsets[2]}
+                  Origin +${offsetX},-${offsetY},-${offsetZ}
                   Normal +0,-1,+0
                   TextureU -1,-0,-0
                   TextureV +0,+0,-1
-                  Vertex +${offsets[0]},-${offsets[1]},-${offsets[2]}
-                  Vertex +${offsets[0]},-${offsets[1]},+${offsets[2]}
-                  Vertex -${offsets[0]},-${offsets[1]},+${offsets[2]}
-                  Vertex -${offsets[0]},-${offsets[1]},-${offsets[2]}
+                  Vertex +${offsetX},-${offsetY},-${offsetZ}
+                  Vertex +${offsetX},-${offsetY},+${offsetZ}
+                  Vertex -${offsetX},-${offsetY},+${offsetZ}
+                  Vertex -${offsetX},-${offsetY},-${offsetZ}
                End Polygon
                Begin Polygon
-                  Origin -${offsets[0]},+${offsets[1]},+${offsets[2]}
+                  Origin -${offsetX},+${offsetY},+${offsetZ}
                   Normal +0,+0,+1
                   TextureU +1,+0,+0
                   TextureV +0,+1,+0
-                  Vertex -${offsets[0]},+${offsets[1]},+${offsets[2]}
-                  Vertex -${offsets[0]},-${offsets[1]},+${offsets[2]}
-                  Vertex +${offsets[0]},-${offsets[1]},+${offsets[2]}
-                  Vertex +${offsets[0]},+${offsets[1]},+${offsets[2]}
+                  Vertex -${offsetX},+${offsetY},+${offsetZ}
+                  Vertex -${offsetX},-${offsetY},+${offsetZ}
+                  Vertex +${offsetX},-${offsetY},+${offsetZ}
+                  Vertex +${offsetX},+${offsetY},+${offsetZ}
                End Polygon
                Begin Polygon
-                  Origin -${offsets[0]},-${offsets[1]},-${offsets[2]}
+                  Origin -${offsetX},-${offsetY},-${offsetZ}
                   Normal +0,+0,-1
                   TextureU +1,+0,+0
                   TextureV +0,-1,+0
-                  Vertex -${offsets[0]},-${offsets[1]},-${offsets[2]}
-                  Vertex -${offsets[0]},+${offsets[1]},-${offsets[2]}
-                  Vertex +${offsets[0]},+${offsets[1]},-${offsets[2]}
-                  Vertex +${offsets[0]},-${offsets[1]},-${offsets[2]}
+                  Vertex -${offsetX},-${offsetY},-${offsetZ}
+                  Vertex -${offsetX},+${offsetY},-${offsetZ}
+                  Vertex +${offsetX},+${offsetY},-${offsetZ}
+                  Vertex +${offsetX},-${offsetY},-${offsetZ}
                End Polygon
             End PolyList
          End Brush
@@ -119,7 +119,7 @@ const merge = (voxels, axis) => {
       x: (voxels[0].x + voxels[lastIdx].x) * 0.5,
       y: (voxels[0].y + voxels[lastIdx].y) * 0.5,
       z: (voxels[0].z + voxels[lastIdx].z) * 0.5,
-      [`side${axis}`]: voxels[lastIdx][axis] - voxels[0][axis] + 1
+      [`side${axis.toUpperCase()}`]: voxels[lastIdx][axis] - voxels[0][axis] + 1
    });
 };
 
@@ -161,28 +161,28 @@ const optimize = (voxels, axis, canMerge = (a, b) => true) => {
 const convertToT3D = (voxelData, size = 200) => {
    let voxels = voxelData.children.find(x => x.id == "XYZI").data.values;
 
-   voxels = voxels.map(vox => Object.assign(vox, { sidex: 1, sidey: 1, sidez: 1}));
+   voxels = voxels.map(vox => Object.assign(vox, { sideX: 1, sideY: 1, sideZ: 1}));
    voxels = optimize(voxels, "z");
-   voxels = optimize(voxels, "y", (a, b) => a.sidez == b.sidez);
-   voxels = optimize(voxels, "x", (a, b) => a.sidez == b.sidez && a.sidey == b.sidey);
+   voxels = optimize(voxels, "y", (a, b) => a.sideZ == b.sideZ);
+   voxels = optimize(voxels, "x", (a, b) => a.sideZ == b.sideZ && a.sideY == b.sideY);
    
-   console.log(voxels.length)
-
    const boxes = voxels.map((vox, idx) =>
       box({
          x: vox.x * size,
          y: vox.y * size,
          z: vox.z * size,
-         offsets: [vox.sidex * size * 0.5, vox.sidey * size * 0.5, vox.sidez * size * 0.5],
+         offsetX: vox.sideX * size * 0.5,
+         offsetY: vox.sideY * size * 0.5,
+         offsetZ: vox.sideZ * size * 0.5,
          name: `Box${idx}`
       })
    );
 
    return `
       Begin Map
-         Begin Level
-         ${boxes.join("\n")}
-         End Level
+      Begin Level
+      ${boxes.join("\n")}
+      End Level
       End Map
    `.trim();
 };
