@@ -31,7 +31,7 @@ async function main() {
 	await writeText(t3dFile, t3dText);
 
 	console.log("...");
-	console.log(`T3D file written: ${t3dFile}`);
+	console.log(`Output: ${t3dFile}`);
 }
 
 main().catch(console.error);
