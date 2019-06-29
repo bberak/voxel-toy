@@ -123,7 +123,7 @@ const merge = (voxels, axis) => {
    });
 };
 
-const optimize = (voxels, axis, canMerge = (a, b) => true) => {
+const compress = (voxels, axis, canMerge = (a, b) => true) => {
    const groups = _.groupBy(voxels, vox =>
       ["x", "y", "z"]
          .filter(k => k != axis)
@@ -158,13 +158,16 @@ const optimize = (voxels, axis, canMerge = (a, b) => true) => {
    return results;
 };
 
-const convertToT3D = (voxelData, size = 200) => {
+const convertToT3D = (voxelData, size = 200, compressionFlag = true) => {
    let voxels = voxelData.children.find(x => x.id == "XYZI").data.values;
 
    voxels = voxels.map(vox => Object.assign(vox, { sideX: 1, sideY: 1, sideZ: 1}));
-   voxels = optimize(voxels, "z");
-   voxels = optimize(voxels, "y", (a, b) => a.sideZ == b.sideZ);
-   voxels = optimize(voxels, "x", (a, b) => a.sideZ == b.sideZ && a.sideY == b.sideY);
+
+   if (compressionFlag) {
+      voxels = compress(voxels, "z");
+      voxels = compress(voxels, "y", (a, b) => a.sideZ == b.sideZ);
+      voxels = compress(voxels, "x", (a, b) => a.sideZ == b.sideZ && a.sideY == b.sideY);
+   }
    
    const boxes = voxels.map((vox, idx) =>
       box({

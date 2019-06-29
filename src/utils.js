@@ -56,11 +56,16 @@ const writeText = (file, str) => {
 	});
 };
 
+const matches = (arr = [], val = "") => {
+	return arr.indexOf(val.trim().toLowerCase()) > -1;
+};
+
 module.exports = {
 	splash,
 	question,
 	abolsutePath,
 	changeExtension,
 	readBuffer,
-	writeText
+	writeText,
+	matches
 };
