@@ -151,7 +151,8 @@ const optimize = (voxels, axis, canMerge = (a, b) => true) => {
          },
          [[]]
       );
-      mergeable.forEach(arr => results.push(merge(mergeable, axis)));
+
+      mergeable.forEach(arr => results.push(merge(arr, axis)));
    });
 
    return results;
@@ -160,20 +161,19 @@ const optimize = (voxels, axis, canMerge = (a, b) => true) => {
 const convertToT3D = (voxelData, size = 200) => {
    let voxels = voxelData.children.find(x => x.id == "XYZI").data.values;
 
+   voxels = voxels.map(vox => Object.assign(vox, { sidex: 1, sidey: 1, sidez: 1}));
    voxels = optimize(voxels, "z");
-   voxels = optimize(voxels, "y", (a, b) => a.sideZ == b.sideZ);
-   voxels = optimize(
-      voxels,
-      "z",
-      (a, b) => a.sideZ == b.sideZ && a.sideY == b.sizeY
-   );
+   voxels = optimize(voxels, "y", (a, b) => a.sidez == b.sidez);
+   voxels = optimize(voxels, "x", (a, b) => a.sidez == b.sidez && a.sidey == b.sidey);
+   
+   console.log(voxels.length)
 
    const boxes = voxels.map((vox, idx) =>
       box({
          x: vox.x * size,
          y: vox.y * size,
          z: vox.z * size,
-         offsets: [vox.sideX * 0.5, vox.sideY * 0.5, vox.sideZ * 0.5],
+         offsets: [vox.sidex * size * 0.5, vox.sidey * size * 0.5, vox.sidez * size * 0.5],
          name: `Box${idx}`
       })
    );
