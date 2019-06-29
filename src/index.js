@@ -22,8 +22,8 @@ async function main() {
 
 	const voxFile = abolsutePath(input);
 	const voxBuffer = await readBuffer(voxFile);
-	const voxels = parseVoxels(voxBuffer);
-	const t3dText = convertToT3D(voxels, size);
+	const voxelData = parseVoxels(voxBuffer);
+	const t3dText = convertToT3D(voxelData, size);
 	const t3dFile = changeExtension(voxFile, ".t3d");
 
 	await writeText(t3dFile, t3dText);

@@ -1,3 +1,5 @@
+const _ = require("lodash");
+
 const box = ({ x, y, z, offsets, name }) => {
    return `
       Begin Actor Class=Brush Name=${name} Archetype=Brush'/Script/Engine.Default__Brush'
@@ -109,119 +111,72 @@ const box = ({ x, y, z, offsets, name }) => {
    `;
 };
 
-const pack = (chain, size) => {
-   const last = chain.length - 1;
-   const x = (chain[0].x + chain[last].x) * 0.5 * size;
-   const y = (chain[0].y + chain[last].y) * 0.5 * size;
-   const z = (chain[0].z + chain[last].z) * 0.5 * size;
-   const sides = [chain[last].x - chain[0].x, chain[last].y - chain[0].y, chain[last].z - chain[0].z].map(n => (n + 1) * size);
-   const offsets = sides.map(n => n * 0.5);
-   
-   return {
-      x,
-      y,
-      z,
-      sides,
-      offsets
-   };
-}
-
-const pack = (chain, axis) => {
-   const lastIdx = chain.length - 1;
-   const last = chain[lastIdx];
+const merge = (voxels, axis) => {
+   const lastIdx = voxels.length - 1;
+   const last = voxels[lastIdx];
 
    return Object.assign(last, {
-      x: (chain[0].x + chain[lastIdx].x) * 0.5,
-      y: (chain[0].y + chain[lastIdx].y) * 0.5,
-      z: (chain[0].z + chain[lastIdx].z) * 0.5,
-      [`size${axis}`]: chain[lastIdx][axis] - chain[0][axis] + 1
+      x: (voxels[0].x + voxels[lastIdx].x) * 0.5,
+      y: (voxels[0].y + voxels[lastIdx].y) * 0.5,
+      z: (voxels[0].z + voxels[lastIdx].z) * 0.5,
+      [`side${axis}`]: voxels[lastIdx][axis] - voxels[0][axis] + 1
    });
 };
 
-
-const merge = (voxels, axis, areAdjacent = (a, b) => Math.abs(a[axis] - b[axis]) == 1) => {
-   const groups = _.groupBy(voxels, vox => ["x", "y", "z"].filter(k => k != axis).map(k => vox[k]).join("-"));
+const optimize = (voxels, axis, canMerge = (a, b) => true) => {
+   const groups = _.groupBy(voxels, vox =>
+      ["x", "y", "z"]
+         .filter(k => k != axis)
+         .map(k => vox[k])
+         .join("-")
+   );
    const results = [];
 
    Object.keys(groups).forEach(key => {
-      const sorted = _.sortBy(groups[key], p => p.z);
-      const adjacent = _.reduce(
+      const sorted = _.sortBy(groups[key], vox => vox[axis]);
+      const mergeable = _.reduce(
          sorted,
          (acc, current) => {
             const arr = acc[acc.length - 1];
             const previous = arr[arr.length - 1];
 
             if (!previous) arr.push(current);
-            else if (areAdjacent(current, previous)) arr.push(current);
+            else if (
+               current[axis] - previous[axis] == 1 &&
+               canMerge(previous, current)
+            )
+               arr.push(current);
             else acc.push([current]);
             return acc;
          },
          [[]]
       );
-      adjacent.forEach(arr => results.push(pack(adjacent, axis)))
+      mergeable.forEach(arr => results.push(merge(mergeable, axis)));
    });
+
+   return results;
 };
 
+const convertToT3D = (voxelData, size = 200) => {
+   let voxels = voxelData.children.find(x => x.id == "XYZI").data.values;
 
-const mergeZ = (voxels, size) => {
-   const groups = _.groupBy(voxels, p => `${p.x}-${p.y}`);
-   const results = [];
+   voxels = optimize(voxels, "z");
+   voxels = optimize(voxels, "y", (a, b) => a.sideZ == b.sideZ);
+   voxels = optimize(
+      voxels,
+      "z",
+      (a, b) => a.sideZ == b.sideZ && a.sideY == b.sizeY
+   );
 
-   Object.keys(groups).forEach(key => {
-      const sorted = _.sortBy(groups[key], p => p.z);
-      const adjacent = _.reduce(
-         sorted,
-         (acc, current) => {
-            const arr = acc[acc.length - 1];
-            const previous = arr[arr.length - 1];
-
-            if (!previous) arr.push(current);
-            else if (current.z - previous.z == 1) arr.push(current);
-            else acc.push([current]);
-            return acc;
-         },
-         [[]]
-      );
-      adjacent.forEach(arr => results.push())
-   });
-};
-
-const optimize = (voxels, size) => {
-   const positions = voxels.children.find(x => x.id == "XYZI").data.values;
-   const chain = [];
-   const result = [];
-
-   for (let i = 0; i < positions.length; i ++) {
-      const current = positions[i];
-      const previous = chain[chain.length -1];
-
-      //-- Start of a new chain
-      if (!previous) {
-         chain.push(current);
-         continue;
-      }
-
-      //-- Continue existing chain
-      if (current.x == previous.x && current.y == previous.y) {
-         chain.push(current);
-         continue;
-      }
-
-      //-- Pack current chain
-      result.push(pack(chain, size));
-      chain.length = 0;
-      chain.push(current);
-   }
-
-   if (chain.length)
-      result.push(pack(chain, size));
-
-   return result;
-}
-
-const convertToT3D = (voxels, size = 200) => {
-   const optimizedVoxels = optimize(voxels, size);
-   const boxes = optimizedVoxels.map((payload, idx) => box(Object.assign(payload, { name: `Box${idx}` })));
+   const boxes = voxels.map((vox, idx) =>
+      box({
+         x: vox.x * size,
+         y: vox.y * size,
+         z: vox.z * size,
+         offsets: [vox.sideX * 0.5, vox.sideY * 0.5, vox.sideZ * 0.5],
+         name: `Box${idx}`
+      })
+   );
 
    return `
       Begin Map
