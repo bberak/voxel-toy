@@ -4,17 +4,17 @@ A tool for converting .vox files to [Unreal Engine](https://www.unrealengine.com
 
 <p align="center">
   	<a href="https://github.com/bberak/voxel-toy/raw/master/assets/images/mv-1.png">
-    	<img src="https://github.com/bberak/voxel-toy/raw/master/assets/images/mv-1.png" height="250" width="250" />
+    	<img src="https://github.com/bberak/voxel-toy/raw/master/assets/images/mv-1.png" height="300" width="300" />
 	</a>
 	<a href="https://github.com/bberak/voxel-toy/raw/master/assets/images/ut-1.png">
-    	<img src="https://github.com/bberak/voxel-toy/raw/master/assets/images/ut-1.png" height="250" width="250" />
+    	<img src="https://github.com/bberak/voxel-toy/raw/master/assets/images/ut-1.png" height="300" width="300" />
 	</a>
 	<br />
 	<a href="https://github.com/bberak/voxel-toy/raw/master/assets/images/ut-2.png">
-    	<img src="https://github.com/bberak/voxel-toy/raw/master/assets/images/ut-2.png" height="250" width="250" />
+    	<img src="https://github.com/bberak/voxel-toy/raw/master/assets/images/ut-2.png" height="300" width="300" />
 	</a>
 	<a href="https://github.com/bberak/voxel-toy/raw/master/assets/images/mv-2.png">
-    	<img src="https://github.com/bberak/voxel-toy/raw/master/assets/images/mv-2.png" height="250" width="250" />
+    	<img src="https://github.com/bberak/voxel-toy/raw/master/assets/images/mv-2.png" height="300" width="300" />
 	</a>
 </p>
 
