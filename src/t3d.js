@@ -126,6 +126,66 @@ const pack = (chain, size) => {
    };
 }
 
+const pack = (chain, axis) => {
+   const lastIdx = chain.length - 1;
+   const last = chain[lastIdx];
+
+   return Object.assign(last, {
+      x: (chain[0].x + chain[lastIdx].x) * 0.5,
+      y: (chain[0].y + chain[lastIdx].y) * 0.5,
+      z: (chain[0].z + chain[lastIdx].z) * 0.5,
+      [`size${axis}`]: chain[lastIdx][axis] - chain[0][axis] + 1
+   });
+};
+
+
+const merge = (voxels, axis, areAdjacent = (a, b) => Math.abs(a[axis] - b[axis]) == 1) => {
+   const groups = _.groupBy(voxels, vox => ["x", "y", "z"].filter(k => k != axis).map(k => vox[k]).join("-"));
+   const results = [];
+
+   Object.keys(groups).forEach(key => {
+      const sorted = _.sortBy(groups[key], p => p.z);
+      const adjacent = _.reduce(
+         sorted,
+         (acc, current) => {
+            const arr = acc[acc.length - 1];
+            const previous = arr[arr.length - 1];
+
+            if (!previous) arr.push(current);
+            else if (areAdjacent(current, previous)) arr.push(current);
+            else acc.push([current]);
+            return acc;
+         },
+         [[]]
+      );
+      adjacent.forEach(arr => results.push(pack(adjacent, axis)))
+   });
+};
+
+
+const mergeZ = (voxels, size) => {
+   const groups = _.groupBy(voxels, p => `${p.x}-${p.y}`);
+   const results = [];
+
+   Object.keys(groups).forEach(key => {
+      const sorted = _.sortBy(groups[key], p => p.z);
+      const adjacent = _.reduce(
+         sorted,
+         (acc, current) => {
+            const arr = acc[acc.length - 1];
+            const previous = arr[arr.length - 1];
+
+            if (!previous) arr.push(current);
+            else if (current.z - previous.z == 1) arr.push(current);
+            else acc.push([current]);
+            return acc;
+         },
+         [[]]
+      );
+      adjacent.forEach(arr => results.push())
+   });
+};
+
 const optimize = (voxels, size) => {
    const positions = voxels.children.find(x => x.id == "XYZI").data.values;
    const chain = [];

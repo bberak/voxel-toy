@@ -26,6 +26,7 @@
   "homepage": "https://github.com/bberak/voxel-toy",
   "dependencies": {
     "args": "^5.0.1",
+    "lodash": "^4.17.11",
     "vox-reader": "^1.0.0"
   },
   "devDependencies": {}
