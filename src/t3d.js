@@ -1,6 +1,6 @@
 const _ = require("lodash");
 
-const box = ({ x, y, z, offsetX, offsetY, offsetZ, name }) => {
+const box = ({ x, y, z, offsetX, offsetY, offsetZ, name, folderName }) => {
    return `
       Begin Actor Class=Brush Name=${name} Archetype=Brush'/Script/Engine.Default__Brush'
          Begin Object Class=CubeBuilder Name="CubeBuilder_0"
@@ -106,7 +106,7 @@ const box = ({ x, y, z, offsetX, offsetY, offsetZ, name }) => {
          SpawnCollisionHandlingMethod=AlwaysSpawn
          RootComponent=BrushComponent0
          ActorLabel="${name}"
-         FolderPath="VoxelToyGeometry"
+         FolderPath="${folderName}"
       End Actor
    `;
 };
@@ -158,7 +158,7 @@ const compress = (voxels, axis, canMerge = (a, b) => true) => {
    return results;
 };
 
-const convertToT3D = (voxelData, size = 200, compressionFlag = true) => {
+const convertToT3D = ({ voxelData, size = 200, compress: compressionFlag = true, folderName = "VoxelToyGeometry" } = {}) => {
    let voxels = voxelData.children.find(x => x.id == "XYZI").data.values;
 
    voxels = voxels.map(vox => Object.assign(vox, { sideX: 1, sideY: 1, sideZ: 1}));
@@ -177,7 +177,8 @@ const convertToT3D = (voxelData, size = 200, compressionFlag = true) => {
          offsetX: vox.sideX * size * 0.5,
          offsetY: vox.sideY * size * 0.5,
          offsetZ: vox.sideZ * size * 0.5,
-         name: `Box${idx}`
+         name: `Box${idx}`,
+         folderName
       })
    );
 

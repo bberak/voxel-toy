@@ -32,6 +32,12 @@ const abolsutePath = file => {
 	return path.isAbsolute(file) ? file : path.join(process.cwd(), file);
 };
 
+const fileName = file => {
+	const ext = path.extname(file);
+
+	return path.basename(file, ext);
+};
+
 const changeExtension = (file, newExt) => {
 	const originalExt = path.extname(file);
 
@@ -64,6 +70,7 @@ module.exports = {
 	splash,
 	question,
 	abolsutePath,
+	fileName,
 	changeExtension,
 	readBuffer,
 	writeText,

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 const args = require("args");
-const { splash, question, abolsutePath, changeExtension, readBuffer, writeText, matches } = require("./utils");
+const { splash, question, abolsutePath, fileName, changeExtension, readBuffer, writeText, matches } = require("./utils");
 const assert = require("assert");
 const parseVoxels = require("vox-reader");
 const { convertToT3D } = require("./t3d");
@@ -25,7 +25,8 @@ async function main() {
 	const voxFile = abolsutePath(file);
 	const voxBuffer = await readBuffer(voxFile);
 	const voxelData = parseVoxels(voxBuffer);
-	const t3dText = convertToT3D(voxelData, size, compress);
+	const folderName = fileName(file);
+	const t3dText = convertToT3D({ voxelData, size, compress, folderName });
 	const t3dFile = changeExtension(voxFile, ".t3d");
 
 	await writeText(t3dFile, t3dText);
