@@ -40,7 +40,7 @@ Once the .t3d file has been generated, open the file in a text editor and copy t
 
 ## Options
 
-`-c, --compress` Merge individual voxels into larger blocks where possible <br/>
+`-c, --compress` Merge individual voxels into larger blocks where possible [(Run-length encoding)](https://en.wikipedia.org/wiki/Run-length_encoding) <br/>
 `-f, --file` The path to the .vox file <br/>
 `-s, --size` The size of each individual voxel in UE4 units <br/>
 
