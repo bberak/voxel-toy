@@ -126,7 +126,7 @@ const merge = (voxels, axis) => {
 const compress = (voxels, axis, canMerge = (a, b) => true) => {
    const groups = _.groupBy(voxels, vox =>
       ["x", "y", "z"]
-         .filter(k => k != axis)
+         .filter(k => k !== axis)
          .map(k => vox[k])
          .join("-")
    );
@@ -142,7 +142,7 @@ const compress = (voxels, axis, canMerge = (a, b) => true) => {
 
             if (!previous) arr.push(current);
             else if (
-               current[axis] - previous[axis] == 1 &&
+               current[axis] - previous[axis] === 1 &&
                canMerge(previous, current)
             )
                arr.push(current);
@@ -159,14 +159,14 @@ const compress = (voxels, axis, canMerge = (a, b) => true) => {
 };
 
 const convertToT3D = ({ voxelData, size = 200, compress: compressionFlag = true, folderName = "VoxelToyGeometry" } = {}) => {
-   let voxels = voxelData.children.find(x => x.id == "XYZI").data.values;
+   let voxels = voxelData.children.find(x => x.id === "XYZI").data.values;
 
    voxels = voxels.map(vox => Object.assign(vox, { sideX: 1, sideY: 1, sideZ: 1}));
 
    if (compressionFlag) {
       voxels = compress(voxels, "z");
-      voxels = compress(voxels, "y", (a, b) => a.sideZ == b.sideZ);
-      voxels = compress(voxels, "x", (a, b) => a.sideZ == b.sideZ && a.sideY == b.sideY);
+      voxels = compress(voxels, "y", (a, b) => a.sideZ === b.sideZ);
+      voxels = compress(voxels, "x", (a, b) => a.sideZ === b.sideZ && a.sideY === b.sideY);
    }
    
    const boxes = voxels.map((vox, idx) =>
