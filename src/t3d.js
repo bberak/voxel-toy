@@ -112,14 +112,14 @@ const box = ({ x, y, z, offsetX, offsetY, offsetZ, name, folderName }) => {
 };
 
 const merge = (voxels, axis) => {
-   const lastIdx = voxels.length - 1;
-   const last = voxels[lastIdx];
+   const first = voxels[0];
+   const last = voxels[voxels.length - 1];
 
    return Object.assign(last, {
-      x: (voxels[0].x + voxels[lastIdx].x) * 0.5,
-      y: (voxels[0].y + voxels[lastIdx].y) * 0.5,
-      z: (voxels[0].z + voxels[lastIdx].z) * 0.5,
-      [`side${axis.toUpperCase()}`]: voxels[lastIdx][axis] - voxels[0][axis] + 1
+      x: (first.x + last.x) * 0.5,
+      y: (first.y + last.y) * 0.5,
+      z: (first.z + last.z) * 0.5,
+      [`side${axis.toUpperCase()}`]: last[axis] - first[axis] + 1
    });
 };
 
